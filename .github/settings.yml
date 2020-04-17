@@ -1,0 +1,6 @@
+_extends: .github
+repository:
+  name: remark-plugin-scaffolder
+  description: opinionated scaffolder for remark plugins
+  homepage: 'https://npm.im/@form8ion/remark-plugin-scaffolder'
+  private: false
