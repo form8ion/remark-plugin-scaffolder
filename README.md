@@ -36,7 +36,9 @@ $ npm install @form8ion/remark-plugin-scaffolder --save-prod
 ### Example
 
 ```javascript
-import remarkPluginScaffolder from '@form8ion/remark-plugin-scaffolder';
+import {scaffold} from '@form8ion/remark-plugin-scaffolder';
+
+scaffold();
 ```
 
 ## Contributing
