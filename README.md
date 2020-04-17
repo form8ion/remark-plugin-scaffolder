@@ -38,7 +38,7 @@ $ npm install @form8ion/remark-plugin-scaffolder --save-prod
 ```javascript
 import {scaffold} from '@form8ion/remark-plugin-scaffolder';
 
-scaffold();
+scaffold({projectRoot: process.cwd(), tests: {integration: true}});
 ```
 
 ## Contributing
