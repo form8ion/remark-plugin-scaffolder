@@ -1,5 +1,5 @@
 import scaffoldTesting from './testing';
 
-export default function ({projectRoot, tests}) {
-  return scaffoldTesting({projectRoot, tests});
+export default function ({projectRoot, projectName, tests}) {
+  return scaffoldTesting({projectRoot, projectName, tests});
 }

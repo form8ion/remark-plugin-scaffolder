@@ -8,7 +8,7 @@ stubbedFs();
 
 // #### Execute
 
-scaffold({projectRoot: process.cwd(), tests: {integration: true}});
+scaffold({projectRoot: process.cwd(), projectName: 'name-of-the-package', tests: {integration: true}});
 
 // remark-usage-ignore-next
 stubbedFs.restore();

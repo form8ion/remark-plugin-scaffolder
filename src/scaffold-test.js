@@ -17,10 +17,11 @@ suite('scaffold', () => {
 
   test('that the plugin is initialized', async () => {
     const projectRoot = any.string();
+    const projectName = any.string();
     const tests = any.simpleObject();
     const testingResults = any.simpleObject();
-    scaffoldTesting.default.withArgs({projectRoot, tests}).resolves(testingResults);
+    scaffoldTesting.default.withArgs({projectRoot, projectName, tests}).resolves(testingResults);
 
-    assert.deepEqual(await scaffold({projectRoot, tests}), testingResults);
+    assert.deepEqual(await scaffold({projectRoot, projectName, tests}), testingResults);
   });
 });
