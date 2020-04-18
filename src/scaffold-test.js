@@ -22,6 +22,6 @@ suite('scaffold', () => {
     const testingResults = any.simpleObject();
     scaffoldTesting.default.withArgs({projectRoot, projectName, tests}).resolves(testingResults);
 
-    assert.deepEqual(await scaffold({projectRoot, projectName, tests}), testingResults);
+    assert.deepEqual(await scaffold({projectRoot, projectName, tests}), {...testingResults, tags: ['remark-plugin']});
   });
 });

@@ -1,5 +1,7 @@
 import scaffoldTesting from './testing';
 
-export default function ({projectRoot, projectName, tests}) {
-  return scaffoldTesting({projectRoot, projectName, tests});
+export default async function ({projectRoot, projectName, tests}) {
+  const testingResults = await scaffoldTesting({projectRoot, projectName, tests});
+
+  return {...testingResults, tags: ['remark-plugin']};
 }
