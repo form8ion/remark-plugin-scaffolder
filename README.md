@@ -13,6 +13,8 @@ opinionated scaffolder for [remark](https://github.com/remarkjs/remark) [plugins
 * [Usage](#usage)
   * [Installation](#installation)
   * [Example](#example)
+    * [Import](#import)
+    * [Execute](#execute)
 * [Contributing](#contributing)
   * [Dependencies](#dependencies)
   * [Verification](#verification)
@@ -35,8 +37,16 @@ $ npm install @form8ion/remark-plugin-scaffolder --save-prod
 
 ### Example
 
+#### Import
+
 ```javascript
-import remarkPluginScaffolder from '@form8ion/remark-plugin-scaffolder';
+import {scaffold} from '@form8ion/remark-plugin-scaffolder';
+```
+
+#### Execute
+
+```javascript
+scaffold({projectRoot: process.cwd(), projectName: 'name-of-the-package', tests: {integration: true}});
 ```
 
 ## Contributing
