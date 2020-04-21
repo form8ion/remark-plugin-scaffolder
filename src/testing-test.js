@@ -48,7 +48,11 @@ suite('testing', () => {
 
     assert.deepEqual(
       await scaffoldTesting({projectRoot, projectName, tests: {integration: true}}),
-      {...cucumberResults, devDependencies: ['remark', ...cucumberDevDependencies]}
+      {
+        ...cucumberResults,
+        devDependencies: ['remark', ...cucumberDevDependencies],
+        scripts: {'pretest:integration:base': 'npm run build:js'}
+      }
     );
     assert.calledWith(
       fs.writeFile,
