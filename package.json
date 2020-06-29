@@ -55,7 +55,6 @@
     "@form8ion/eslint-config-mocha": "1.2.8",
     "@form8ion/remark-lint-preset": "1.0.8",
     "@travi/any": "2.0.9",
-    "@travi/javascript-scaffolder": "10.22.10",
     "ban-sensitive-files": "1.9.7",
     "chai": "4.2.0",
     "codecov": "3.7.0",
@@ -79,12 +78,13 @@
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "^1.1.0",
+    "@travi/javascript-scaffolder": "11.0.0-alpha.2",
     "camelcase": "^6.0.0",
     "deepmerge": "^4.2.2",
     "make-dir": "^3.0.2",
     "mustache": "^4.0.1"
   },
   "peerDependencies": {
-    "@travi/javascript-scaffolder": "^10.21.0"
+    "@travi/javascript-scaffolder": "^10.21.0 || ^11.0.0-alpha.1"
   }
 }
