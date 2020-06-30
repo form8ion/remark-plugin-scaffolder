@@ -78,7 +78,7 @@
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "^1.1.0",
-    "@travi/javascript-scaffolder": "11.0.0-alpha.2",
+    "@travi/javascript-scaffolder": "11.0.0",
     "camelcase": "^6.0.0",
     "deepmerge": "^4.2.2",
     "make-dir": "^3.0.2",
