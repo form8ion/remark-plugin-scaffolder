@@ -58,7 +58,7 @@
     "@travi/javascript-scaffolder": "11.1.2",
     "ban-sensitive-files": "1.9.7",
     "chai": "4.2.0",
-    "codecov": "3.7.0",
+    "codecov": "3.7.1",
     "cucumber": "6.0.5",
     "cz-conventional-changelog": "3.2.0",
     "gherkin-lint": "4.1.0",
