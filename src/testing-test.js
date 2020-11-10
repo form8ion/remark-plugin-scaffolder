@@ -13,6 +13,7 @@ suite('testing', () => {
   let sandbox;
   const projectRoot = any.string();
   const projectName = any.word();
+  const packageName = any.word();
   const camelizedProjectName = any.word();
   const pathToCreatedDirectory = any.string();
 
@@ -44,22 +45,19 @@ suite('testing', () => {
       .withArgs(resolve(__dirname, '..', 'templates', 'common-steps.mustache'), 'utf8')
       .resolves(templateContent);
     camelcase.default.withArgs(projectName).returns(camelizedProjectName);
-    mustache.render.withArgs(templateContent, {projectName: camelizedProjectName}).returns(renderedContent);
+    mustache.render
+      .withArgs(templateContent, {projectName: camelizedProjectName, packageName})
+      .returns(renderedContent);
 
     assert.deepEqual(
-      await scaffoldTesting({projectRoot, projectName, tests: {integration: true}}),
+      await scaffoldTesting({projectRoot, projectName, packageName, tests: {integration: true}}),
       {
         ...cucumberResults,
-        devDependencies: ['remark', ...cucumberDevDependencies],
-        scripts: {'pretest:integration:base': 'npm run build:js'}
+        devDependencies: ['remark', 'package-preview', ...cucumberDevDependencies],
+        scripts: {'pretest:integration:base': 'preview'}
       }
     );
-    assert.calledWith(
-      fs.writeFile,
-      `${pathToCreatedDirectory}/common-steps.js`,
-      // resolve(__dirname, '..', 'templates', 'common-steps.mustache'),
-      renderedContent
-    );
+    assert.calledWith(fs.writeFile, `${pathToCreatedDirectory}/common-steps.js`, renderedContent);
   });
 
   test('that no canary test is created when the project will not be integration tested', async () => {
