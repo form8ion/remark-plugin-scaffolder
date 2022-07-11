@@ -76,7 +76,7 @@
     "sinon": "14.0.0"
   },
   "dependencies": {
-    "@form8ion/cucumber-scaffolder": "^1.1.0",
+    "@form8ion/cucumber-scaffolder": "^2.0.0",
     "camelcase": "^6.0.0",
     "deepmerge": "^4.2.2",
     "make-dir": "^3.0.2",
