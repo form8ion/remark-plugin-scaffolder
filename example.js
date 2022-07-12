@@ -7,7 +7,8 @@ import {scaffold} from './lib/index.cjs';
 // remark-usage-ignore-next 4
 stubbedFs({
   node_modules: stubbedFs.load(resolve(__dirname, 'node_modules')),
-  templates: stubbedFs.load(resolve(__dirname, 'templates'))
+  templates: stubbedFs.load(resolve(__dirname, 'templates')),
+  'package.json': JSON.stringify({})
 });
 
 // #### Execute
