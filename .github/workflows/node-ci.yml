@@ -17,30 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Read .nvmrc
-        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-        id: nvm
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.nvm.outputs.NVMRC }}
-      - uses: bahmutov/npm-install@v1
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm clean-install
       - run: npm test
       - uses: codecov/codecov-action@v3
-  trigger-release:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+  release:
     needs:
       - verify
-    steps:
-      - uses: octokit/request-action@v2.x
-        with:
-          route: >-
-            POST
-            /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
-          owner: form8ion
-          repo: remark-plugin-scaffolder
-          ref: ${{ github.ref }}
-          workflow_id: release.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+    uses: form8ion/.github/.github/workflows/release-package.yml@master
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
