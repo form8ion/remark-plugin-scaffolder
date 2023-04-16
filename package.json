@@ -3,24 +3,17 @@
   "description": "opinionated scaffolder for remark plugins",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
-  "files": [
-    "example.js",
-    "lib/",
-    "templates/"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "repository": "form8ion/remark-plugin-scaffolder",
+  "bugs": "https://github.com/form8ion/remark-plugin-scaffolder/issues",
+  "homepage": "https://npm.im/@form8ion/remark-plugin-scaffolder",
   "runkitExampleFilename": "./example.js",
   "main": "lib/index.cjs.js",
   "module": "lib/index.es.js",
   "sideEffects": false,
-  "repository": "form8ion/remark-plugin-scaffolder",
-  "bugs": "https://github.com/form8ion/remark-plugin-scaffolder/issues",
-  "homepage": "https://npm.im/@form8ion/remark-plugin-scaffolder",
-  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "scripts": {
-    "test": "npm-run-all --print-label build --parallel lint:* --parallel test:*",
+    "pretest": "run-s build",
+    "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
     "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm",
     "lint:js": "eslint . --cache",
     "lint:gherkin": "gherkin-lint",
@@ -36,7 +29,7 @@
     "watch": "run-s 'build:js -- --watch'",
     "prepack": "run-s build",
     "test:unit": "cross-env NODE_ENV=test c8 run-s test:unit:base",
-    "test:unit:base": "DEBUG=any mocha 'src/**/*-test.js'",
+    "test:unit:base": "DEBUG=any vitest run",
     "test:integration": "run-s 'test:integration:base -- --profile noWip'",
     "pretest:integration:base": "npm run build:js",
     "test:integration:base": "cucumber-js test/integration --profile base",
@@ -45,6 +38,21 @@
     "test:integration:focus": "run-s 'test:integration:base -- --profile focus'",
     "prepare": "husky install"
   },
+  "files": [
+    "example.js",
+    "lib/",
+    "templates/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@form8ion/cucumber-scaffolder": "^2.0.0",
+    "camelcase": "^6.0.0",
+    "deepmerge": "^4.2.2",
+    "make-dir": "^3.0.2",
+    "mustache": "^4.0.1"
+  },
   "devDependencies": {
     "@babel/register": "7.21.0",
     "@cucumber/cucumber": "9.1.0",
@@ -52,19 +60,17 @@
     "@form8ion/commitlint-config": "1.0.49",
     "@form8ion/eslint-config": "5.0.29",
     "@form8ion/eslint-config-cucumber": "1.4.1",
-    "@form8ion/eslint-config-mocha": "2.0.3",
     "@form8ion/javascript": "10.6.1",
     "@form8ion/remark-lint-preset": "5.0.0",
     "@travi/any": "2.1.8",
     "ban-sensitive-files": "1.9.19",
     "c8": "7.13.0",
-    "chai": "4.3.7",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "gherkin-lint": "4.2.2",
     "husky": "8.0.3",
+    "jest-when": "3.5.2",
     "lockfile-lint": "4.10.1",
-    "mocha": "10.2.0",
     "mock-fs": "5.2.0",
     "npm-run-all": "4.1.5",
     "remark-cli": "11.0.0",
@@ -73,14 +79,7 @@
     "rimraf": "5.0.0",
     "rollup": "3.20.3",
     "rollup-plugin-auto-external": "2.0.0",
-    "sinon": "15.0.3"
-  },
-  "dependencies": {
-    "@form8ion/cucumber-scaffolder": "^2.0.0",
-    "camelcase": "^6.0.0",
-    "deepmerge": "^4.2.2",
-    "make-dir": "^3.0.2",
-    "mustache": "^4.0.1"
+    "vitest": "0.30.1"
   },
   "peerDependencies": {
     "@form8ion/javascript": ">=2.0.0"

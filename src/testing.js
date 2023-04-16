@@ -1,5 +1,5 @@
-import {resolve} from 'path';
-import {promises as fs} from 'fs';
+import {resolve} from 'node:path';
+import {promises as fs} from 'node:fs';
 import deepmerge from 'deepmerge';
 import mustache from 'mustache';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
