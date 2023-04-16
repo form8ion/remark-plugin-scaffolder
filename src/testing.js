@@ -1,11 +1,13 @@
-import {resolve} from 'node:path';
+import {resolve, dirname} from 'node:path';
 import {promises as fs} from 'node:fs';
+import {fileURLToPath} from 'node:url';
 import deepmerge from 'deepmerge';
 import mustache from 'mustache';
+import camelcase from 'camelcase';
+import mkdir from 'make-dir';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
-import camelcase from '../thirdparty-wrappers/camelcase';
-import mkdir from '../thirdparty-wrappers/make-dir';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));                  // eslint-disable-line no-underscore-dangle
 export default async function ({projectRoot, projectName, packageName, tests}) {
   if (tests.integration) {
     const [stepDefinitionsDirectory, cucumberResults] = await Promise.all([

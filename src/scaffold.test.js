@@ -2,10 +2,10 @@ import {afterEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
-import * as scaffoldTesting from './testing';
-import scaffold from './scaffold';
+import * as scaffoldTesting from './testing.js';
+import scaffold from './scaffold.js';
 
-vi.mock('./testing');
+vi.mock('./testing.js');
 
 describe('scaffold', () => {
   afterEach(() => {

@@ -1,21 +1,21 @@
 import {promises as fs} from 'node:fs';
 import {resolve} from 'node:path';
 import mustache from 'mustache';
+import * as mkdir from 'make-dir';
+import * as camelcase from 'camelcase';
 import * as cucumberScaffolder from '@form8ion/cucumber-scaffolder';
 
 import {afterEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
-import * as mkdir from '../thirdparty-wrappers/make-dir';
-import * as camelcase from '../thirdparty-wrappers/camelcase';
-import scaffoldTesting from './testing';
+import scaffoldTesting from './testing.js';
 
 vi.mock('node:fs');
 vi.mock('mustache');
+vi.mock('make-dir');
+vi.mock('camelcase');
 vi.mock('@form8ion/cucumber-scaffolder');
-vi.mock('../thirdparty-wrappers/make-dir');
-vi.mock('../thirdparty-wrappers/camelcase');
 
 describe('testing', () => {
   const projectRoot = any.string();
