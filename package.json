@@ -52,7 +52,7 @@
     "@form8ion/cucumber-scaffolder": "^2.0.0",
     "camelcase": "^7.0.0",
     "deepmerge": "^4.2.2",
-    "make-dir": "^3.0.2",
+    "make-dir": "^4.0.0",
     "mustache": "^4.0.1"
   },
   "devDependencies": {
