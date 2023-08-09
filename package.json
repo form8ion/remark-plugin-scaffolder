@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "^3.0.0",
-    "camelcase": "^7.0.0",
+    "camelcase": "^8.0.0",
     "deepmerge": "^4.2.2",
     "make-dir": "^4.0.0",
     "mustache": "^4.0.1"
