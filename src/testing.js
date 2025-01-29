@@ -8,6 +8,7 @@ import mkdir from 'make-dir';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));                  // eslint-disable-line no-underscore-dangle
+
 export default async function ({projectRoot, projectName, packageName, tests}) {
   if (tests.integration) {
     const [stepDefinitionsDirectory, cucumberResults] = await Promise.all([
@@ -24,7 +25,10 @@ export default async function ({projectRoot, projectName, packageName, tests}) {
     );
 
     return deepmerge(
-      {devDependencies: ['remark', 'package-preview'], scripts: {'pretest:integration:base': 'preview'}},
+      {
+        dependencies: {javascript: {development: ['remark', 'package-preview']}},
+        scripts: {'pretest:integration:base': 'preview'}
+      },
       cucumberResults
     );
   }
