@@ -48,10 +48,7 @@ describe('testing', () => {
       .mockReturnValue(renderedContent);
     when(deepmerge)
       .calledWith(
-        {
-          dependencies: {javascript: {development: ['remark', 'package-preview']}},
-          scripts: {'pretest:integration:base': 'preview'}
-        },
+        {dependencies: {javascript: {development: ['remark']}}, scripts: {'pretest:integration:base': 'run-s build'}},
         cucumberResults
       )
       .mockReturnValue(mergedResults);
