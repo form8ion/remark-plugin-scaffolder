@@ -42,7 +42,8 @@
     "test:integration:wip": "run-s 'test:integration:base -- --profile wip'",
     "test:integration:focus": "run-s 'test:integration:base -- --profile focus'",
     "prepare": "husky install",
-    "lint:engines": "ls-engines"
+    "lint:engines": "ls-engines",
+    "lint:js:fix": "run-s 'lint:js -- --fix'"
   },
   "files": [
     "example.js",
