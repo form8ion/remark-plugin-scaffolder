@@ -51,7 +51,8 @@
     "templates/"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "^5.0.0-beta.2",
