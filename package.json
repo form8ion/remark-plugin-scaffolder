@@ -24,7 +24,7 @@
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
     "lint:peer": "npm ls >/dev/null",
-    "lint:publish": "publint",
+    "lint:publish": "publint --strict",
     "generate:md": "remark . --output",
     "pregenerate:md": "npm run build",
     "clean": "rimraf ./lib",
