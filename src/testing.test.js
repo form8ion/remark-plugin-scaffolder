@@ -1,7 +1,7 @@
 import {promises as fs} from 'node:fs';
 import {resolve} from 'node:path';
 import mustache from 'mustache';
-import * as mkdir from 'make-dir';
+import deepmerge from 'deepmerge';
 import * as camelcase from 'camelcase';
 import * as cucumberScaffolder from '@form8ion/cucumber-scaffolder';
 
@@ -13,8 +13,8 @@ import scaffoldTesting from './testing.js';
 
 vi.mock('node:fs');
 vi.mock('mustache');
-vi.mock('make-dir');
 vi.mock('camelcase');
+vi.mock('deepmerge');
 vi.mock('@form8ion/cucumber-scaffolder');
 
 describe('testing', () => {
@@ -22,20 +22,16 @@ describe('testing', () => {
   const projectName = any.word();
   const packageName = any.word();
   const camelizedProjectName = any.word();
-  const pathToCreatedDirectory = any.string();
 
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   it('should create a canary cucumber test when the project will be integration tested', async () => {
-    const cucumberDevDependencies = any.listOf(any.word);
-    const cucumberResults = {...any.simpleObject(), devDependencies: cucumberDevDependencies};
+    const cucumberResults = any.simpleObject();
+    const mergedResults = any.simpleObject();
     const renderedContent = any.string();
     const templateContent = any.string();
-    when(mkdir.default)
-      .calledWith(`${projectRoot}/test/integration/features/step_definitions`)
-      .mockResolvedValue(pathToCreatedDirectory);
     when(cucumberScaffolder.scaffold).calledWith({projectRoot}).mockReturnValue(cucumberResults);
     when(fs.readFile)
       .calledWith(resolve(__dirname, '..', 'templates', 'common-steps.mustache'), 'utf8')
@@ -44,14 +40,21 @@ describe('testing', () => {
     when(mustache.render)
       .calledWith(templateContent, {projectName: camelizedProjectName, packageName})
       .mockReturnValue(renderedContent);
+    when(deepmerge)
+      .calledWith(
+        {dependencies: {javascript: {development: ['remark']}}, scripts: {'pretest:integration:base': 'run-s build'}},
+        cucumberResults
+      )
+      .mockReturnValue(mergedResults);
 
     expect(await scaffoldTesting({projectRoot, projectName, packageName, tests: {integration: true}}))
-      .toEqual({
-        ...cucumberResults,
-        devDependencies: ['remark', 'package-preview', ...cucumberDevDependencies],
-        scripts: {'pretest:integration:base': 'preview'}
-      });
-    expect(fs.writeFile).toHaveBeenCalledWith(`${pathToCreatedDirectory}/common-steps.js`, renderedContent);
+      .toEqual(mergedResults);
+    expect(fs.mkdir)
+      .toHaveBeenCalledWith(`${projectRoot}/test/integration/features/step_definitions`, {recursive: true});
+    expect(fs.writeFile).toHaveBeenCalledWith(
+      `${projectRoot}/test/integration/features/step_definitions/common-steps.js`,
+      renderedContent
+    );
   });
 
   it('should not create a canary test when the project will not be integration tested', async () => {
