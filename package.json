@@ -87,7 +87,7 @@
     "rimraf": "6.1.0",
     "rollup": "4.53.2",
     "rollup-plugin-auto-external": "2.0.0",
-    "vitest": "4.0.9"
+    "vitest": "4.0.10"
   },
   "peerDependencies": {
     "@form8ion/javascript": ">=2.0.0"
