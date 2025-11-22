@@ -57,7 +57,7 @@
   "packageManager": "npm@11.6.3+sha512.4085a763162e0e3acd19a4e9d23ad3aa0978e501ccf947dd7233c12a689ae0bb0190763c4ef12366990056b34eec438903ffed38fde4fbd722a17c2a7407ee92",
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "^5.0.0-beta.2",
-    "camelcase": "^8.0.0",
+    "camelcase": "^9.0.0",
     "deepmerge": "^4.2.2",
     "mustache": "^4.0.1"
   },
