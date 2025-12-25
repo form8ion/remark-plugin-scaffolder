@@ -88,8 +88,5 @@
     "rollup": "4.54.0",
     "rollup-plugin-auto-external": "2.0.0",
     "vitest": "4.0.16"
-  },
-  "peerDependencies": {
-    "@form8ion/javascript": ">=2.0.0"
   }
 }
