@@ -1,6 +1,6 @@
 import {afterEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
-import {when} from 'jest-when';
+import {when} from 'vitest-when';
 
 import * as scaffoldTesting from './testing.js';
 import scaffold from './scaffold.js';
@@ -20,7 +20,7 @@ describe('scaffold', () => {
     const testingResults = any.simpleObject();
     when(scaffoldTesting.default)
       .calledWith({projectRoot, projectName, packageName, tests})
-      .mockResolvedValue(testingResults);
+      .thenResolve(testingResults);
 
     expect(await scaffold({projectRoot, projectName, packageName, tests}))
       .toEqual({...testingResults, tags: ['remark-plugin']});

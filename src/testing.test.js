@@ -7,7 +7,7 @@ import * as cucumberScaffolder from '@form8ion/cucumber-scaffolder';
 
 import {afterEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
-import {when} from 'jest-when';
+import {when} from 'vitest-when';
 
 import scaffoldTesting from './testing.js';
 
@@ -32,20 +32,20 @@ describe('testing', () => {
     const mergedResults = any.simpleObject();
     const renderedContent = any.string();
     const templateContent = any.string();
-    when(cucumberScaffolder.scaffold).calledWith({projectRoot}).mockReturnValue(cucumberResults);
+    when(cucumberScaffolder.scaffold).calledWith({projectRoot}).thenReturn(cucumberResults);
     when(fs.readFile)
       .calledWith(resolve(__dirname, '..', 'templates', 'common-steps.mustache'), 'utf8')
-      .mockResolvedValue(templateContent);
-    when(camelcase.default).calledWith(projectName).mockReturnValue(camelizedProjectName);
+      .thenResolve(templateContent);
+    when(camelcase.default).calledWith(projectName).thenReturn(camelizedProjectName);
     when(mustache.render)
       .calledWith(templateContent, {projectName: camelizedProjectName, packageName})
-      .mockReturnValue(renderedContent);
+      .thenReturn(renderedContent);
     when(deepmerge)
       .calledWith(
         {dependencies: {javascript: {development: ['remark']}}, scripts: {'pretest:integration:base': 'run-s build'}},
         cucumberResults
       )
-      .mockReturnValue(mergedResults);
+      .thenReturn(mergedResults);
 
     expect(await scaffoldTesting({projectRoot, projectName, packageName, tests: {integration: true}}))
       .toEqual(mergedResults);
